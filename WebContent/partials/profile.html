@@ -1,0 +1,199 @@
+<div id=siteTitle>
+	<div id=logo>
+		<img
+			src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/usbrazilsec.png"
+			alt="" style="height: 50px"></a>
+	</div>
+
+	<div id=title>
+		<p>US Brazil Workshop on Cyber Security and Privacy</p>
+	</div>
+
+</div>
+
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+		<div>
+			<ul class="nav navbar-nav">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#organizers">Organizers</a></li>
+				<li><a href="#schedule-br">Brasilia Workshop</a></li>
+				<li><a href="#schedule-us">Orlando Workshop</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id=pageContent ng-show="formFlag">
+	<h4>Please enter profile information. All fields are required.</h4>
+
+	<form>
+
+		<div class="form-group">
+			<label for="inputEmail">Name</label> <input type="text"
+				class="form-control" id="inputEmail" placeholder="Name"
+				ng-model="info.name">
+		</div>
+
+
+
+		<div class="form-group">
+			<div class="alert alert-info" ng-hide="uploadFlag">
+				<strong>Info!</strong> Please choose a profile picture.
+			</div>
+			<div class="alert alert-success" ng-show="uploadFlag">
+				<strong>Success!</strong> Profile picture has been uploaded.
+			</div>
+
+			<label for="inputEmail">Profile Picture</label> <input type="file"
+				name="file"
+				onchange="angular.element(this).scope().uploadFile(this.files)" />
+		</div>
+		<div class="form-group">
+			<label for="inputEmail">Position</label> <input type="text"
+				class="form-control" id="inputEmail"
+				placeholder="Professor or Research Scientist"
+				ng-model="info.position">
+		</div>
+		<div class="form-group">
+			<label for="inputEmail">Organization</label> <input type="text"
+				class="form-control" id="inputEmail"
+				placeholder="University of XYZ or Department of XYZ"
+				ng-model="info.organization">
+		</div>
+		<div class="form-group">
+			<label for="inputEmail">Email</label> <input type="text"
+				class="form-control" id="inputEmail" placeholder="Email"
+				ng-model="info.email">
+		</div>
+
+		<div class="form-group">
+			<label for="inputEmail">Primary research areas</label> <input
+				type="text" maxlength="100" class="form-control" id="inputEmail"
+				placeholder="Information Security, Network Security, Cyrptography. Character limit 100"
+				ng-model="info.researchArea">
+		</div>
+
+		<div class="form-group">
+			<label for="inputEmail">About yourself</label>
+			<textarea maxlength="1000" class="form-control" rows="5" id="comment"
+				placeholder="A small paragraph describing yourself, your background and area of expertise. Character limit of 1000"
+				ng-model="info.bio"></textarea>
+		</div>
+
+		<!--  <div class="form-group">
+			<label for="inputEmail">Link to your homepage</label> <input
+				type="text" class="form-control" id="inputEmail"
+				placeholder="www.example.com" ng-model="info.homepage">
+		</div> -->
+		
+		<div class="form-group">
+			<div class="alert alert-info" ng-hide="uploadFlag">
+				<strong>Info!</strong> Please enter security code provided to you.
+			</div>
+			<label for="inputPassword">Security Code</label> <input type="text"
+				class="form-control" id="inputPassword" placeholder="code"
+				ng-model="info.code">
+		</div>
+		<!-- <div class="form-group">
+    	<label for="inputPassword">Workshop Attending</label>
+    	<select ng-model="info.location" ng-options="location in locations"></select>
+    </div>  -->
+		<div class="alert alert-info" ng-hide="uploadFlag">
+			<strong>Info!</strong> Please choose a profile picture before submitting the profile.
+		</div>
+		<button type="submit" class="btn btn-success" ng-click='sendData()' ng-disabled="!uploadFlag">Submit</button>
+	</form>
+	
+	<!--  
+	usbcsw2015bioreg Name : {{info.name}} <br> Position :
+	{{info.position}} <br> organization : {{info.organization}} <br>
+	email : {{info.email}} <br> Area : {{info.researchArea}} <br>
+	Bio : {{info.bio}} <br> Link : <a href="http://www.google.com">{{info.homepage}}</a>
+	<br> photoUrl: {{info.photoUrl}} <br> file: {{file}}
+	-->
+</div>
+
+<div id=pageContent ng-show="uploadingFlag">
+	<h2>Checking security code and other credentials.  
+	<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></h2>
+</div>
+
+<div id=pageContent ng-show="uploadSuccessFlag">
+	<div ng-show="uploadResultFlag">
+		<div class="alert alert-success">
+			<strong>Success!</strong> Profile successfully uploaded.
+
+		</div>
+		<p>
+			Click here to <a href="#people-br">View People</a>
+		</p>
+	</div>
+	<div ng-hide="uploadResultFlag">
+		<div class="alert alert-danger">
+			<strong>Error!</strong> Profile upload failed. Please check security code!. Make sure all fields are filled and not left blank.
+
+		</div>
+		<p>
+			Click here to retry <button type="submit" class="btn btn-success" ng-click='reloadPage()'>Add Bio</button>
+		</p>
+	</div>
+	
+
+</div>
+
+
+<br>
+<br>
+<div id=line></div>
+
+<div class="footer" id=footer>
+	<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="sponsors">
+						<div class="footer-heading">US Partners</div>
+						<div>
+							<a href="http://www.nsf.gov/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/nsf.jpg"
+								alt="" style="height: 70px"></a> <a href="http://www.dhs.gov/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/dhs.jpg"
+								alt="" style="height: 70px"></a> <a href="http://www.ufl.edu/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/UF.jpg"
+								alt="" style="height: 60px"></a> <a
+								href="http://www.ece.ufl.edu/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/ece.jpg"
+								alt="" style="height: 40px"></a> <a
+								href="http://fics-institute.org/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/fics.png"
+								alt="" style="height: 50px; margin-left: 8px"></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 sponsors-div">
+					<div class="sponsors">
+						<div class="footer-heading">Brazil Partners</div>
+						<div>
+							<a href="http://mcti.gov.br/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/MCTI.png"
+								alt="" style="height: 90px"></a> <a
+								href="http://www.ctic.rnp.br/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/Cnpq.jpg"
+								alt="" style="height: 80px"></a><a href="http://www.rnp.br/en"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/RNP.png"
+								alt="" style="height: 80px"></a> <a
+								href="http://www.cic.unb.br/"><img
+								src="https://s3-us-west-2.amazonaws.com/usbrazilcybersecurityworkshop/unb_new.png"
+								alt="" style="height: 50px"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
