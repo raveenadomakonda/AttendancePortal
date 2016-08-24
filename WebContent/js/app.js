@@ -54,6 +54,10 @@ webApp.config(['$routeProvider',
         templateUrl: 'partials/profile.html',
         controller: 'profileCtrl'
       }). 
+      when('/samplePage', {
+          templateUrl: 'partials/samplePageHTML.html',
+          controller: 'sampleCtrl'
+        }). 
       otherwise({
         redirectTo: '/home'
       });

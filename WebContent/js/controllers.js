@@ -26,6 +26,10 @@ webControllers.controller('travelCtrlUS', [ '$scope', '$http', function($scope, 
 
 }]);
 
+webControllers.controller('sampleCtrl', [ '$scope', '$http', function($scope, $http) {
+
+}]);
+
 webControllers.controller('peopleCtrlBR', [ '$scope', '$http', function($scope, $http) {
 	
 	$scope.profiles = "";
