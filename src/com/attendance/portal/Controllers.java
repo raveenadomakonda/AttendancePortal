@@ -17,6 +17,8 @@ public class Controllers {
 	public @ResponseBody
 	String exampleFunction() {
 		String text = "Server says hi!";
+		
+		
 		return gson.toJson(text);
 	}
 }
