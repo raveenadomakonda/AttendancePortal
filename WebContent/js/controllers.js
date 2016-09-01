@@ -1,19 +1,5 @@
 var webControllers = angular.module('webControllers', []);
 
-webControllers.controller('webCtrl', ['$scope', '$http',function ($scope,$http) {
-    
-}]);
-
-webControllers.controller('peopleCtrlUS', [ '$scope', '$http', function($scope, $http) {
-	
-	$scope.profiles = "Empty";
-	$http.get('/USBrazilSec/rest/getProfilesUS').success(function(data) {
-		  console.log("Profile data"+ data);  
-		  $scope.profiles = data;
-		});
-
-}]);
-
 webControllers.controller('sampleCtrl', [ '$scope', '$http', function($scope, $http) {
 	
 	$scope.sampleVar = "Hello World!!";
@@ -48,7 +34,11 @@ webControllers.controller('enterAttendanceCtrl', [ '$scope', '$http', function($
 }]);
 
 webControllers.controller('facultyCtrl', [ '$scope', '$http', function($scope, $http) {
-	
+	$scope.param = 5435;
+}]);
+
+webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', function($scope, $http) {
+	$scope.val = $scope.param;
 }]);
 
 webControllers.controller('loginCtrl', [ '$scope', '$http', function($scope, $http) {
@@ -56,5 +46,9 @@ webControllers.controller('loginCtrl', [ '$scope', '$http', function($scope, $ht
 }]);
 
 webControllers.controller('studentCtrl', [ '$scope', '$http', function($scope, $http) {
+	
+}]);
+
+webControllers.controller('studentAttendanceViewCtrl', [ '$scope', '$http', function($scope, $http) {
 	
 }]);

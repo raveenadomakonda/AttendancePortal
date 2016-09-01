@@ -10,14 +10,6 @@ var webApp = angular.module('webApp', [
 webApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/home', {
-        templateUrl: 'partials/home.html',
-        controller: 'webCtrl'
-      }).
-      when('/samplePage', {
-          templateUrl: 'partials/samplePageHTML.html',
-          controller: 'sampleCtrl'
-      }).
       when('/addFaculty', {
           templateUrl: 'partials/addFaculty.html',
           controller: 'addFacultyCtrl'
@@ -42,7 +34,7 @@ webApp.config(['$routeProvider',
           templateUrl: 'partials/enterAttendance.html',
           controller: 'enterAttendanceCtrl'
       }).
-      when('/faculty', {
+      when('/faculty/:facultyId', {
           templateUrl: 'partials/faculty.html',
           controller: 'facultyCtrl'
       }).
@@ -50,9 +42,17 @@ webApp.config(['$routeProvider',
           templateUrl: 'partials/login.html',
           controller: 'loginCtrl'
       }).
-      when('/student', {
+      when('/student/:studentId', {
           templateUrl: 'partials/student.html',
           controller: 'studentCtrl'
+      }).
+      when('/facultyAttendanceView/:facultyId', {
+          templateUrl: 'partials/facultyAttendanceView.html',
+          controller: 'facultyAttendanceViewCtrl'
+      }).
+      when('/studentAttendanceView/:studentId', {
+          templateUrl: 'partials/studentAttendanceView.html',
+          controller: 'studentAttendanceViewCtrl'
       }).
       otherwise({
         redirectTo: '/login'
