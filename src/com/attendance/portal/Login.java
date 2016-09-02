@@ -10,20 +10,20 @@ import javax.sql.DataSource;
 
 
 public class Login {
-	public Validation validate(DataSource db,String Username, String Password) throws SQLException{
+	public Validation validate(DataSource db,String username, String password) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "SELECT Password,Type FROM Login WHERE Id = ?";
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setString(1,Username);
+		p.setString(1,username);
 		ResultSet rs = p.executeQuery();
-		String Pass = null;
-		String AccountType = null;
+		String pass = null;
+		String accountType = null;
 		while(rs.next()){
-			Pass = rs.getString("Password");
-			AccountType = rs.getString("Type");
+			pass = rs.getString("Password");
+			accountType = rs.getString("Type");
 		}
-		if(Pass.equals(Password)){
-			return new Validation(true, AccountType);
+		if(pass.equals(password)){
+			return new Validation(true, accountType);
 		}
 		else{
 			return new Validation(false, null);

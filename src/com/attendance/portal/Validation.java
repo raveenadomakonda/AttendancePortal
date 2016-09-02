@@ -2,9 +2,9 @@ package com.attendance.portal;
 
 public class Validation {
 	boolean isValid;
-	String AccountType;
-	Validation(boolean isValid, String AccountType){
+	String accountType;
+	Validation(boolean isValid, String accountType){
 		isValid = this.isValid;
-		AccountType = this.AccountType;
+		accountType = this.accountType;
 	}
 }
