@@ -20,6 +20,9 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Student VALUES (1,'Doma','Anurag','SRD',4,'CSE',8178969617) "); 
 		ResultSet rs = st.executeQuery("SELECT * FROM Student");
 		dump(rs); 
+		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
+		System.out.println(Student.addStudent(db, 2,"anu", "rag","srini",4,"CSE", "1234567890"));
+		System.out.println(Student.deleteStudent(db, 2));
 		st.close();
 		conn.commit();
 		conn.close();
