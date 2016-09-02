@@ -1,10 +1,6 @@
 package com.attendance.portal;
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.*;
 
 import javax.sql.DataSource;
@@ -24,6 +20,7 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Student VALUES (1,'Doma','Anurag','SRD',4,'CSE',8178969617) "); 
 		ResultSet rs = st.executeQuery("SELECT * FROM Student");
 		dump(rs); 
+		Login login = new Login();
 		st.close();
 		conn.commit();
 		conn.close();
@@ -56,6 +53,7 @@ public class DBTest {
 				+ "Id varchar(255), "
 				+ "Password varchar(255), "
 				+ "Type varchar(255))");
+		st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin')");
 		//System.out.println("Login Table created");
 		st.executeUpdate("CREATE TABLE Course_Faculty("
 				+ "CourseId int, "
