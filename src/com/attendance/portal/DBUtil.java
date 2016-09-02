@@ -1,28 +1,26 @@
 package com.attendance.portal;
 
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.hsqldb.Statement;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
-public class DBTest {
-	public static void main(String[] args) throws SQLException{
-		DataSource db = dataSource();
-		createTable(db);
-		Connection conn = db.getConnection();
-		java.sql.Statement st = null;
-		st = conn.createStatement();        
-		st.executeUpdate("INSERT INTO Student VALUES (1,'Doma','Anurag','SRD',4,'CSE',8178969617) "); 
-		ResultSet rs = st.executeQuery("SELECT * FROM Student");
-		dump(rs); 
-		st.close();
-		conn.commit();
-		conn.close();
+public class DBUtil {
+
+	public static DataSource dataSource() {
+		// no need shutdown, EmbeddedDatabaseFactoryBean will take care of this
+		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+		EmbeddedDatabase db = builder
+			.setType(EmbeddedDatabaseType.HSQL) //.H2 or .DERBY
+			.build();
+		System.out.println("DB Bean Created !!! ");
+		return db;
 	}
 	
 	private static void createTable(DataSource db) throws SQLException {
@@ -72,18 +70,6 @@ public class DBTest {
 		
 	}
 
-	public static DataSource dataSource() {
-		// no need shutdown, EmbeddedDatabaseFactoryBean will take care of this
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder
-			.setType(EmbeddedDatabaseType.HSQL) //.H2 or .DERBY
-			//.addScript("C:\\Users\\Anurag\\git\\AttendancePortal\\db\\sql\\CreateTable.sql") //Add these later when you have your schema figured out raveena
-			//.addScript("db/sql/insert-data.sql")
-			.build();
-		System.out.println("DB Bean Created !!! ");
-		return db;
-	}
-	
 	public static void dump(ResultSet rs) throws SQLException {
         ResultSetMetaData meta   = rs.getMetaData();
         int colmax = meta.getColumnCount();
@@ -97,6 +83,5 @@ public class DBTest {
             }
             System.out.println(" ");
         }
-    }       
-	
+    }      
 }
