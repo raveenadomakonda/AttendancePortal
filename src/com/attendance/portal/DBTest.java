@@ -55,7 +55,8 @@ public class DBTest {
 				+ "Id varchar(255), "
 				+ "Password varchar(255), "
 				+ "Type varchar(255))");
-		st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin')");
+		st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin'),('Raveena','rav123','Student'),('Sunny','sun123','Faculty')");
+		
 		//System.out.println("Login Table created");
 		st.executeUpdate("CREATE TABLE Course_Faculty("
 				+ "CourseId int, "
