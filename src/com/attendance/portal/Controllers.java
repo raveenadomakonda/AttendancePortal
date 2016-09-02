@@ -1,5 +1,7 @@
 package com.attendance.portal;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,8 @@ import com.google.gson.Gson;
 public class Controllers {
 	
 	@Autowired Gson gson;
+	@Autowired DataSource dataSource;
+	@Autowired Login loginHandler;
 	
 	@RequestMapping(value = "/sampleRestApi", method = RequestMethod.GET)
 	public @ResponseBody
@@ -27,6 +31,13 @@ public class Controllers {
 			@RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password) {
 		System.out.println(username + "	" + password);
-		return gson.toJson(true);
+		Validation result;
+		try{
+			result = loginHandler.validate(dataSource, username, password);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = new Validation(false, "Error");
+		}
+		return gson.toJson(result);
 	}
 }

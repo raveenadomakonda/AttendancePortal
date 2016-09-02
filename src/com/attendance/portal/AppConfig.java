@@ -22,14 +22,18 @@ public class AppConfig {
 	@Bean
 	public DataSource dataSource() {
 		// no need shutdown, EmbeddedDatabaseFactoryBean will take care of this
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder
-			.setType(EmbeddedDatabaseType.HSQL) //.H2 or .DERBY
-			//.addScript("db/sql/create-db.sql") //Add these later when you have your schema figured out raveena
-			//.addScript("db/sql/insert-data.sql")
-			.build();
+		DataSource db = DBUtil.dataSource();
+		try{
+			DBUtil.createTable(db);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("\n\n\n\n\n\n\n\n DB Bean Created !!! \n\n\n\n\n\n\n\n");
-
 		return db;
+	}
+	
+	@Bean
+	public Login loginHandler(){
+		return new Login();
 	}
 }

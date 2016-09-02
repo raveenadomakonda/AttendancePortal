@@ -42,14 +42,31 @@ webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', func
 }]);
 
 webControllers.controller('loginCtrl', [ '$scope', '$http', function($scope, $http) {
-	$scope.username = "sunny";
-	$scope.password = "kbcp";
+	//$scope.username = "sunny";
+	//$scope.password = "kbcp";
 	$scope.errorFlag = false;
 	$scope.restCallData = false;
 	$http.get('/AttendancePortal/rest/loginDo', {params:{username:$scope.username, password:$scope.password}}).success(function(data) {
 		  console.log("Profile data"+ data);  
 		  $scope.restCallData = data;
 		});
+    $scope.loginCheck = function(){
+    	$scope.id = $scope.username;
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/loginDo', {params:{username:$scope.username, password:$scope.password}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data.isValid == false) {
+            	$scope.errorFlag = true;
+            }
+          }).error(function(){
+              console.log("No reply from server for getAttributionData request");
+              $scope.errorFlag = true;
+            });
+
+    	$scope.username = null;
+    	$scope.password = null;
+    }
 }]);
 
 webControllers.controller('studentCtrl', [ '$scope', '$http', function($scope, $http) {
