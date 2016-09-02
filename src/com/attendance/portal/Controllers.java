@@ -40,4 +40,23 @@ public class Controllers {
 		}
 		return gson.toJson(result);
 	}
+	
+	@RequestMapping(value = "/addFacultyDo", method = RequestMethod.GET)
+	public @ResponseBody
+	String login(
+			@RequestParam(value = "firstName", required = true) String firstName,
+            @RequestParam(value = "lastName", required = true) String lastName,
+            @RequestParam(value = "id", required = true) String id,
+            @RequestParam(value = "phoneNumber", required = true) String phoneNumber,
+            @RequestParam(value = "password", required = true) String password) {
+		System.out.println(firstName + "	" + lastName + "	" + id + "	" + phoneNumber + "	" + password);
+		Validation result;
+		/*try{
+			result = loginHandler.validate(dataSource, firstName, lastName, id, phoneNumber, password);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = new Validation(false, "Error");
+		}*/
+		return gson.toJson(false);
+	}
 }

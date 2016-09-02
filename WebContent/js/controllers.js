@@ -10,7 +10,28 @@ webControllers.controller('sampleCtrl', [ '$scope', '$http', function($scope, $h
 }]);
 
 webControllers.controller('addFacultyCtrl', [ '$scope', '$http', function($scope, $http) {
-	
+	$scope.errorFlag = false;
+    $scope.addFaculty = function(){
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/addFacultyDo', {params:{firstName:$scope.firstName, lastName:$scope.lastName, id:$scope.id, phoneNumber:$scope.phoneNumber, password:$password}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data == false) {
+            	$scope.errorFlag = true;
+            } else {
+            		$location.path("admin");
+            }
+          }).error(function(){
+              console.log("No reply from server");
+              $scope.errorFlag = true;
+            });
+
+    	$scope.firstName = null;
+    	$scope.lastName = null;
+    	$scope.id = null;
+    	$scope.phoneNumber = null;
+    	$scope.password = null;
+    }
 }]);
 
 webControllers.controller('addStudentCtrl', [ '$scope', '$http', function($scope, $http) {
@@ -42,8 +63,6 @@ webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', func
 }]);
 
 webControllers.controller('loginCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
-	//$scope.username = "sunny";
-	//$scope.password = "kbcp";
 	$scope.errorFlag = false;
 	$scope.restCallData = false;
 	$http.get('/AttendancePortal/rest/loginDo', {params:{username:$scope.username, password:$scope.password}}).success(function(data) {
