@@ -1,0 +1,58 @@
+<div id=siteTitle>
+	<div id=title>
+		<p>Attendance Portal</p>
+	</div>
+</div>
+
+
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div>
+			<ul class="nav navbar-nav">
+				<li><a href="#aboutUs">About Us</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id=pageContent>
+
+	<h1>Login</h1>
+	<p>Please enter your login details below</p>
+	{{restCallData}}
+	
+	<div ng-show="errorFlag">
+		<div class="alert alert-danger">
+			<strong>Invalid Credentials!</strong> Please check username and password.
+
+		</div>
+	</div>
+	
+	<form>
+
+		<div class="form-group">
+			<label for="username">Username</label> <input type="text"
+				class="form-control" id="username" placeholder="College ID"
+				ng-model="info.username">
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label> <input type="password"
+				class="form-control" id="password"
+				placeholder="*****"
+				ng-model="info.password">
+		</div>
+		<button type="submit" class="btn btn-success" ng-click='sendData()'>Submit</button>
+	</form>
+</div>
+
+<br>
+<div id=line></div>
+
+<div class="footer" id=footer>
+	<div class="container">
+		<div class="container-fluid">
+			
+				
+		</div>
+	</div>
+</div>

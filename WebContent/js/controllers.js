@@ -42,7 +42,14 @@ webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', func
 }]);
 
 webControllers.controller('loginCtrl', [ '$scope', '$http', function($scope, $http) {
-	
+	$scope.username = "sunny";
+	$scope.password = "kbcp";
+	$scope.errorFlag = false;
+	$scope.restCallData = false;
+	$http.get('/AttendancePortal/rest/loginDo', {params:{username:$scope.username, password:$scope.password}}).success(function(data) {
+		  console.log("Profile data"+ data);  
+		  $scope.restCallData = data;
+		});
 }]);
 
 webControllers.controller('studentCtrl', [ '$scope', '$http', function($scope, $http) {
@@ -50,5 +57,9 @@ webControllers.controller('studentCtrl', [ '$scope', '$http', function($scope, $
 }]);
 
 webControllers.controller('studentAttendanceViewCtrl', [ '$scope', '$http', function($scope, $http) {
+	
+}]);
+
+webControllers.controller('aboutUsCtrl', [ '$scope', '$http', function($scope, $http) {
 	
 }]);

@@ -54,6 +54,10 @@ webApp.config(['$routeProvider',
           templateUrl: 'partials/studentAttendanceView.html',
           controller: 'studentAttendanceViewCtrl'
       }).
+      when('/aboutUs', {
+          templateUrl: 'partials/aboutUs.html',
+          controller: 'aboutUsCtrl'
+      }).
       otherwise({
         redirectTo: '/login'
       });
