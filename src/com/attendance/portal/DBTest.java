@@ -18,7 +18,7 @@ public class DBTest {
 		java.sql.Statement st = null;
 		st = conn.createStatement();        
 		st.executeUpdate("INSERT INTO Student VALUES (1,'Doma','Anurag','SRD',4,'CSE',8178969617) "); 
-		ResultSet rs = st.executeQuery("SELECT * FROM Student");
+		ResultSet rs = st.executeQuery("SELECT * FROM Login");
 		dump(rs); 
 		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
 		System.out.println(Course.addCourse(db, 1,"Java"));

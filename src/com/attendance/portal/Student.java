@@ -19,7 +19,10 @@ public class Student {
 		p.setInt(5, year);
 		p.setString(6,branch);
 		p.setString(7, phone);
-		return p.executeUpdate();
+		int i = p.executeUpdate();
+		conn.commit();
+		conn.close();
+		return i;
 	}
 	
 	public static int deleteStudent(DataSource db, int rollno) throws SQLException{
@@ -27,6 +30,9 @@ public class Student {
 		String s = "DELETE FROM Student WHERE Rollno = ? ";
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setInt(1, rollno);
-		return p.executeUpdate();
+		int i = p.executeUpdate();
+		conn.commit();
+		conn.close();
+		return i;
 	}
 }

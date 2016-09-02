@@ -13,7 +13,10 @@ public class Course {
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setInt(1, courseId);
 		p.setString(2,courseName);
-		return p.executeUpdate();
+		int i = p.executeUpdate();
+		conn.commit();
+		conn.close();
+		return i;
 	}
 	
 	public static int deleteCourse(DataSource db, int courseId) throws SQLException{
@@ -21,7 +24,10 @@ public class Course {
 		String s = "DELETE FROM Course WHERE CourseId = ? ";
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setInt(1, courseId);
-		return p.executeUpdate();
+		int i = p.executeUpdate();
+		conn.commit();
+		conn.close();
+		return i;
 	}
 
 }
