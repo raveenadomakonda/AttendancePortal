@@ -16,6 +16,7 @@ public class Login {
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setString(1,username);
 		ResultSet rs = p.executeQuery();
+		conn.close();
 		String pass = null;
 		String accountType = null;
 		while(rs.next()){
