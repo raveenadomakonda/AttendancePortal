@@ -23,7 +23,7 @@ public class DBUtil {
 		return db;
 	}
 	
-	private static void createTable(DataSource db) throws SQLException {
+	public static void createTable(DataSource db) throws SQLException {
 		Connection conn = db.getConnection();
 		java.sql.Statement st = null;
 		st = conn.createStatement();
