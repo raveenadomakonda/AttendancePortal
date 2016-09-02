@@ -20,7 +20,7 @@ public class Faculty {
 	}
 	public static int deleteFaculty(DataSource db, int facultyId) throws SQLException{
 		Connection conn = db.getConnection();
-		String s = "DELETE FROM Faculty WHERE facultyId = ? ";
+		String s = "DELETE FROM Faculty WHERE FacultyId = ? ";
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setInt(1, facultyId);
 		return p.executeUpdate();

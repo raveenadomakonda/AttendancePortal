@@ -24,7 +24,7 @@ public class Student {
 	
 	public static int deleteStudent(DataSource db, int rollno) throws SQLException{
 		Connection conn = db.getConnection();
-		String s = "DELETE FROM Student WHERE rollno = ? ";
+		String s = "DELETE FROM Student WHERE Rollno = ? ";
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setInt(1, rollno);
 		return p.executeUpdate();

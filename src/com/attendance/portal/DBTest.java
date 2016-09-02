@@ -21,8 +21,8 @@ public class DBTest {
 		ResultSet rs = st.executeQuery("SELECT * FROM Student");
 		dump(rs); 
 		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
-		System.out.println(Student.addStudent(db, 2,"anu", "rag","srini",4,"CSE", "1234567890"));
-		System.out.println(Student.deleteStudent(db, 2));
+		System.out.println(Course.addCourse(db, 1,"Java"));
+		System.out.println(Course.deleteCourse(db, 1));
 		st.close();
 		conn.commit();
 		conn.close();
