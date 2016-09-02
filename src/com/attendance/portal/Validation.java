@@ -1,10 +1,10 @@
 package com.attendance.portal;
 
 public class Validation {
-	public boolean isValid;
-	public String accountType;
+	public final boolean isValid;
+	public final String accountType;
 	public Validation(boolean isValid, String accountType){
-		isValid = this.isValid;
-		accountType = this.accountType;
+		this.isValid = isValid;
+		this.accountType = accountType;
 	}
 }
