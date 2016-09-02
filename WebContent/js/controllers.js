@@ -41,7 +41,7 @@ webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', func
 	$scope.val = $scope.param;
 }]);
 
-webControllers.controller('loginCtrl', [ '$scope', '$http', function($scope, $http) {
+webControllers.controller('loginCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
 	//$scope.username = "sunny";
 	//$scope.password = "kbcp";
 	$scope.errorFlag = false;
@@ -58,6 +58,14 @@ webControllers.controller('loginCtrl', [ '$scope', '$http', function($scope, $ht
             $scope.response = data;
             if(data.isValid == false) {
             	$scope.errorFlag = true;
+            } else {
+            	if(data.accountType == "Admin") {
+            		$location.path("admin");
+            	} else if(data.accountType == "Faculty") {
+            		$location.path("faculty/" + $scope.id);
+            	} else {
+            		$location.path("student/" + $scope.id);
+            	}
             }
           }).error(function(){
               console.log("No reply from server for getAttributionData request");
