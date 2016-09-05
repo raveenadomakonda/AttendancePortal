@@ -96,7 +96,26 @@ webControllers.controller('deleteFacultyCtrl', [ '$scope', '$http', function($sc
 }]);
 
 webControllers.controller('deleteStudentCtrl', [ '$scope', '$http', function($scope, $http) {
-	
+	$scope.errorFlag = false;
+	$scope.successFlag = false;
+    $scope.deleteStudent = function(){
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/deleteStudentDo', {params:{id:$scope.id}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data == false) {
+            	$scope.errorFlag = true;
+            	$scope.successFlag = false;
+            } else {
+            	$scope.successFlag = true;
+            }
+          }).error(function(){
+              console.log("No reply from server");
+              $scope.errorFlag = true;
+              $scope.successFlag = false;
+            });
+    	$scope.id = null;
+    }
 }]);
 
 webControllers.controller('enterAttendanceCtrl', [ '$scope', '$http', function($scope, $http) {

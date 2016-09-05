@@ -99,4 +99,20 @@ public class Controllers {
 		}
 		return gson.toJson(result);
 	}
+	
+	@RequestMapping(value = "/deleteStudentDo", method = RequestMethod.GET)
+	public @ResponseBody
+	String deleteStudent(
+            @RequestParam(value = "id", required = true) String id) {
+		System.out.println(id);
+		boolean result;
+		try{
+			result = Student.deleteStudent(dataSource, id);
+			Student.viewStudent(dataSource);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return gson.toJson(result);
+	}
 }

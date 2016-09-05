@@ -1,0 +1,57 @@
+<div id=siteTitle>
+	<div id=title>
+		<p>Attendance Portal</p>
+	</div>
+</div>
+
+
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div>
+			<ul class="nav navbar-nav">
+				<li><a href="#admin">Admin Home</a></li>
+				<li><a href="#login">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id=pageContent>
+
+	<h1>Delete Faculty</h1>
+	<p>Enter the id to delete student.</p>
+	<div ng-show="errorFlag">
+		<div class="alert alert-danger">
+			<strong>Delete failed!</strong> Please enter all fields correctly.
+
+		</div>
+	</div>
+	<div ng-show="successFlag">
+		<div class="alert alert-success">
+			<strong>Deleted successfully</strong> Student has been deleted.
+
+		</div>
+	</div>
+	response: {{response}}
+	<form>
+		<div class="form-group">
+			<label for="id">Student ID</label> <input type="text"
+				class="form-control" id="id" placeholder="Unique student id"
+				ng-model="id">
+		</div>
+		<button type="submit" class="btn btn-success" ng-click='deleteStudent()'>Submit</button>
+	</form>
+	
+</div>
+
+<br>
+<div id=line></div>
+
+<div class="footer" id=footer>
+	<div class="container">
+		<div class="container-fluid">
+			
+				
+		</div>
+	</div>
+</div>
