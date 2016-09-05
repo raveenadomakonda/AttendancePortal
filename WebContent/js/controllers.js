@@ -120,6 +120,28 @@ webControllers.controller('deleteStudentCtrl', [ '$scope', '$http', function($sc
 
 webControllers.controller('enterAttendanceCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
 	$scope.id = $location.path().split("/")[2];
+	$scope.errorFlag = false;
+	$scope.successFlag = false;
+    $scope.enterAttendance = function(){
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/enterAttendanceDo', {params:{courseId:$scope.courseId, date:$scope.date, studentList:$scope.studentList}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data == false) {
+            	$scope.errorFlag = true;
+            	$scope.successFlag = false;
+            } else {
+            	$scope.successFlag = true;
+            }
+          }).error(function(){
+              console.log("No reply from server");
+              $scope.errorFlag = true;
+              $scope.successFlag = false;
+            });
+    	$scope.courseId = null;
+    	$scope.date = null;
+    	$scope.studentList = null;
+    }
 }]);
 
 webControllers.controller('facultyCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
@@ -130,6 +152,23 @@ webControllers.controller('facultyCtrl', [ '$scope', '$http', '$location', funct
 webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
 	$scope.val = $scope.param;
 	$scope.id = $location.path().split("/")[2];
+	$scope.successFlag = false;
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/facultyAttendanceViewDo', {params:{id:$scope.id}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data == false) {
+            	$scope.errorFlag = true;
+            	$scope.successFlag = false;
+            } else {
+            	$scope.successFlag = true;
+            }
+          }).error(function(){
+              console.log("No reply from server");
+              $scope.errorFlag = true;
+              $scope.successFlag = false;
+            });
+    	$scope.id = null;
 }]);
 
 webControllers.controller('loginCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {

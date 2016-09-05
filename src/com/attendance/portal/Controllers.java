@@ -1,5 +1,8 @@
 package com.attendance.portal;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +112,40 @@ public class Controllers {
 		try{
 			result = Student.deleteStudent(dataSource, id);
 			Student.viewStudent(dataSource);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping(value = "/enterAttendanceDo", method = RequestMethod.GET)
+	public @ResponseBody
+	String enterAttendance(
+            @RequestParam(value = "courseId", required = true) String courseId,
+            @RequestParam(value = "date", required = true) String date,
+            @RequestParam(value = "studentList", required = true) String studentList) {
+		System.out.println(courseId + "	" + date + "	" + studentList);
+		boolean result;
+		try{
+			result = EnterAttendance.enterAttendance(dataSource, Integer.parseInt(courseId), date, new LinkedList<String>(Arrays.asList(studentList.split(" "))));
+			EnterAttendance.viewAttendance(dataSource);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping(value = "/facultyAttendanceViewDo", method = RequestMethod.GET)
+	public @ResponseBody
+	String facultyAttendanceView(
+            @RequestParam(value = "id", required = true) String id) {
+		System.out.println(id);
+		boolean result = false;
+		try{
+			//result = Student.deleteStudent(dataSource, id);
+			//Student.viewStudent(dataSource);
 		} catch(Exception e) {
 			e.printStackTrace();
 			result = false;

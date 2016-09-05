@@ -18,8 +18,8 @@
 
 <div id=pageContent>
 
-	<h1>Add Student</h1>
-	<p>Enter the details to add student. All fields are required!</p>
+	<h1>Enter Attendance</h1>
+	<p>All fields are required!</p>
 	<div ng-show="errorFlag">
 		<div class="alert alert-danger">
 			<strong>Add failed!</strong> Please enter all fields correctly.
@@ -28,53 +28,29 @@
 	</div>
 	<div ng-show="successFlag">
 		<div class="alert alert-success">
-			<strong>Added successfully</strong> Student has been added.
+			<strong>Added successfully</strong> Attendance has been entered.
 
 		</div>
 	</div>
 	response: {{response}} Param: {{val}}
 	<form>
 		<div class="form-group">
-			<label for="firstName">First Name</label> <input type="text"
-				class="form-control" id="firstName" placeholder="first name"
-				ng-model="firstName">
+			<label for="courseId">Course ID</label> <input type="text"
+				class="form-control" id="courseId" placeholder="Unique course id"
+				ng-model="courseId">
 		</div>
 		<div class="form-group">
-			<label for="lastName">Last Name</label> <input type="text"
-				class="form-control" id="lastName" placeholder="last name"
-				ng-model="lastName">
+			<label for="date">Date (yyyy-mm-day)</label> <input type="text"
+				class="form-control" id="date" placeholder="2016-05-23"
+				ng-model="date">
 		</div>
 		<div class="form-group">
-			<label for="fathersName">Father's Name</label> <input type="text"
-				class="form-control" id="fathersName" placeholder="father's name"
-				ng-model="fathersName">
+			<label for="studentList">List of absent students' IDs (Separated by space only)</label> <input type="text"
+				class="form-control" id="studentList" placeholder="13H61A1217 13H61A1285 13H61A1984"
+				ng-model="studentList">
 		</div>
-		<div class="form-group">
-			<label for="brancg">Branch</label> <input type="text"
-				class="form-control" id="branch" placeholder="branch"
-				ng-model="branch">
-		</div>
-		<div class="form-group">
-			<label for="year">Year</label> <input type="text"
-				class="form-control" id="year" placeholder="year"
-				ng-model="year">
-		<div class="form-group">
-			<label for="id">Student ID</label> <input type="text"
-				class="form-control" id="id" placeholder="Unique student id"
-				ng-model="id">
-		</div>
-		<div class="form-group">
-			<label for="phoneNumber">Phone Number</label> <input type="text"
-				class="form-control" id="phoneNumber" placeholder="Phone number"
-				ng-model="phoneNumber">
-		</div>
-		<div class="form-group">
-			<label for="password">Password</label> <input type="password"
-				class="form-control" id="password"
-				placeholder="*****"
-				ng-model="password">
-		</div>
-		<button type="submit" class="btn btn-success" ng-click='addFaculty()'>Submit</button>
+		
+		<button type="submit" class="btn btn-success" ng-click='enterAttendance()'>Submit</button>
 	</form>
 	
 </div>
