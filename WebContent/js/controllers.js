@@ -118,16 +118,18 @@ webControllers.controller('deleteStudentCtrl', [ '$scope', '$http', function($sc
     }
 }]);
 
-webControllers.controller('enterAttendanceCtrl', [ '$scope', '$http', function($scope, $http) {
-	
+webControllers.controller('enterAttendanceCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
+	$scope.id = $location.path().split("/")[2];
 }]);
 
-webControllers.controller('facultyCtrl', [ '$scope', '$http', function($scope, $http) {
-	$scope.param = 5435;
+webControllers.controller('facultyCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
+	//$scope.param = 5435;
+	$scope.id = $location.path().split("/")[2];
 }]);
 
-webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', function($scope, $http) {
+webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
 	$scope.val = $scope.param;
+	$scope.id = $location.path().split("/")[2];
 }]);
 
 webControllers.controller('loginCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
@@ -164,11 +166,11 @@ webControllers.controller('loginCtrl', [ '$scope', '$http', '$location', functio
     }
 }]);
 
-webControllers.controller('studentCtrl', [ '$scope', '$http', function($scope, $http) {
+webControllers.controller('studentCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
 	
 }]);
 
-webControllers.controller('studentAttendanceViewCtrl', [ '$scope', '$http', function($scope, $http) {
+webControllers.controller('studentAttendanceViewCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
 	
 }]);
 

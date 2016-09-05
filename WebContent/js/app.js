@@ -30,7 +30,7 @@ webApp.config(['$routeProvider',
           templateUrl: 'partials/deleteStudent.html',
           controller: 'deleteStudentCtrl'
       }).
-      when('/enterAttendance', {
+      when('/enterAttendance/:facultyId', {
           templateUrl: 'partials/enterAttendance.html',
           controller: 'enterAttendanceCtrl'
       }).
