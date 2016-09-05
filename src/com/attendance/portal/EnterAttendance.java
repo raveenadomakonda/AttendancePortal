@@ -15,12 +15,18 @@ public class EnterAttendance {
 	public static boolean enterAttendance(DataSource db,String courseId, String date, LinkedList<String> absentees) throws SQLException, ParseException{ 
 		Connection conn = db.getConnection();
 		//LinkedList<Integer> integerAbsentees = new LinkedList<Integer>();
-		java.sql.Statement st = null;
+		/*java.sql.Statement st = null;
 		st = conn.createStatement();        
 		ResultSet rs = st.executeQuery("SELECT DISTINCT Rollno FROM Student"); 
 		LinkedList<String> list = DBUtil.dumpToList(rs);
 		System.out.println(list);
-		st.close();
+		st.close();*/
+		String st = "SELECT DISTINCT StudentId FROM Course_Student WHERE CourseId = ?";
+		PreparedStatement z = conn.prepareStatement(st);
+		z.setString(1, courseId);
+		ResultSet rs = z.executeQuery();
+		LinkedList<String> list = DBUtil.dumpToList(rs);
+		System.out.println(list);
 		String s = "INSERT INTO Attendance VALUES(?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setString(2, courseId);
