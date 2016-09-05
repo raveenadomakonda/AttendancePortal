@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import javax.sql.DataSource;
 
 public class EnterAttendance {
-	public static boolean enterAttendance(DataSource db,int courseId, String date, LinkedList<String> absentees) throws SQLException, ParseException{ 
+	public static boolean enterAttendance(DataSource db,String courseId, String date, LinkedList<String> absentees) throws SQLException, ParseException{ 
 		Connection conn = db.getConnection();
 		//LinkedList<Integer> integerAbsentees = new LinkedList<Integer>();
 		java.sql.Statement st = null;
@@ -23,7 +23,7 @@ public class EnterAttendance {
 		st.close();
 		String s = "INSERT INTO Attendance VALUES(?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setInt(2, courseId);
+		p.setString(2, courseId);
 		p.setDate(3, DBUtil.sqlDate(date));
 		//while(!absentees.isEmpty()){
 			//integerAbsentees.add(Integer.valueOf(absentees.remove()));

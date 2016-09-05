@@ -27,7 +27,7 @@ public class ViewAttendance {
 		q.setString(1,rollno);
 		System.out.println("courseList"+courseList);
 		for(String course : courseList){
-			q.setInt(2, Integer.valueOf(course));
+			q.setString(2, course);
 			ResultSet res = q.executeQuery();
 			totalClasses.add(DBUtil.getTotal(res));
 		}
@@ -35,7 +35,7 @@ public class ViewAttendance {
 		PreparedStatement r = conn.prepareStatement(totalPresent);
 		r.setString(1,rollno);
 		for(String presentTotal : courseList){
-			r.setInt(2, Integer.valueOf(presentTotal));
+			r.setString(2, presentTotal);
 			ResultSet result = r.executeQuery();
 			//DBUtil.dump(result);
 			//System.out.println(result.getInt("C"));

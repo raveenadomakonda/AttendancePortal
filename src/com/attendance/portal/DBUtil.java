@@ -47,7 +47,7 @@ public class DBUtil {
 				+ "Phone varchar(255))");
 		//System.out.println("Faculty table created");
 		st.executeUpdate("CREATE TABLE Course ("
-				+"CourseId int,"
+				+"CourseId varchar(255),"
 				+"CourseName varchar(255))");
 		//System.out.println("Course Table Created");
 		st.executeUpdate("CREATE TABLE Login ("
@@ -57,14 +57,14 @@ public class DBUtil {
 		st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin'),('Raveena','rav123','Student'),('Sunny','sun123','Faculty')");
 		//System.out.println("Login Table created");
 		st.executeUpdate("CREATE TABLE Course_Faculty("
-				+ "CourseId int, "
+				+ "CourseId varchar(255), "
 				+ "FacultyId varchar(255))");
 		st.executeUpdate("CREATE TABLE Course_Student("
-				+ "CourseId int, "
+				+ "CourseId varchar(255), "
 				+ "StudentId varchar(255))");
 		st.executeUpdate("CREATE TABLE Attendance("
 				+ "StudentId varchar(255), "
-				+ "CourseId int, "
+				+ "CourseId varchar(255), "
 				+ "Date date, "
 				+ "Status varchar(255))");
 		System.out.println("All tables created");
