@@ -52,7 +52,7 @@ public class Controllers {
 		System.out.println(firstName + "	" + lastName + "	" + id + "	" + phoneNumber + "	" + password);
 		boolean result;
 		try{
-			result = Faculty.addFaculty(dataSource, Integer.parseInt(id), lastName, firstName, phoneNumber, password);
+			result = Faculty.addFaculty(dataSource, id, lastName, firstName, phoneNumber, password);
 			Faculty.viewFaculty(dataSource);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -68,8 +68,31 @@ public class Controllers {
 		System.out.println(id);
 		boolean result;
 		try{
-			result = Faculty.deleteFaculty(dataSource, Integer.parseInt(id));
+			result = Faculty.deleteFaculty(dataSource, id);
 			Faculty.viewFaculty(dataSource);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping(value = "/addStudentDo", method = RequestMethod.GET)
+	public @ResponseBody
+	String addStudent(
+			@RequestParam(value = "firstName", required = true) String firstName,
+            @RequestParam(value = "lastName", required = true) String lastName,
+            @RequestParam(value = "fathersName", required = true) String fathersName,
+            @RequestParam(value = "branch", required = true) String branch,
+            @RequestParam(value = "year", required = true) String year,
+            @RequestParam(value = "id", required = true) String id,
+            @RequestParam(value = "phoneNumber", required = true) String phoneNumber,
+            @RequestParam(value = "password", required = true) String password) {
+		System.out.println(firstName + "	" + lastName + "	" + id + "	" + phoneNumber + "	" + password);
+		boolean result;
+		try{
+			result = Student.addStudent(dataSource, id, lastName, firstName, fathersName, Integer.parseInt(year), branch, phoneNumber, password);
+			Student.viewStudent(dataSource);
 		} catch(Exception e) {
 			e.printStackTrace();
 			result = false;

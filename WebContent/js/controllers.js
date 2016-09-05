@@ -38,7 +38,34 @@ webControllers.controller('addFacultyCtrl', [ '$scope', '$http', function($scope
 }]);
 
 webControllers.controller('addStudentCtrl', [ '$scope', '$http', function($scope, $http) {
-	
+	$scope.errorFlag = false;
+	$scope.successFlag = false;
+    $scope.addFaculty = function(){
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/addStudentDo', {params:{firstName:$scope.firstName, lastName:$scope.lastName, fathersName:$scope.fathersName, branch:$scope.branch, year:$scope.year, id:$scope.id, phoneNumber:$scope.phoneNumber, password:$scope.password}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data == false) {
+            	$scope.errorFlag = true;
+            	$scope.successFlag = false;
+            } else {
+            	$scope.successFlag = true;
+            }
+          }).error(function(){
+              console.log("No reply from server");
+              $scope.errorFlag = true;
+              $scope.successFlag = false;
+            });
+
+    	$scope.firstName = null;
+    	$scope.lastName = null;
+    	$scope.fathersName = null;
+    	$scope.branch = null;
+    	$scope.id = null;
+    	$scope.phoneNumber = null;
+    	$scope.password = null;
+    	$scope.year = null;
+    }
 }]);
 
 webControllers.controller('adminCtrl', [ '$scope', '$http', function($scope, $http) {
