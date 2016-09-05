@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.text.ParseException;
 import java.util.LinkedList;
+
 
 
 import javax.sql.DataSource;
@@ -20,7 +20,7 @@ public class EnterAttendance {
 		ResultSet rs = st.executeQuery("SELECT DISTINCT Rollno FROM Student"); 
 		LinkedList<String> list = DBUtil.dumpToList(rs);
 		System.out.println(list);
-		//st.close();
+		st.close();
 		String s = "INSERT INTO Attendance VALUES(?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setInt(2, courseId);
@@ -50,15 +50,21 @@ public class EnterAttendance {
 			}
 		}
 		
-		ResultSet res = st.executeQuery("SELECT * FROM Student"); 
-		DBUtil.dump(res);
-		st.close();
 		conn.commit();
 		conn.close();
 		
 		return true;
 	}
 	
-	
+	public static void viewAttendance(DataSource db) throws SQLException{
+		Connection conn = db.getConnection();
+		java.sql.Statement st = null;
+		st = conn.createStatement();        
+		ResultSet rs = st.executeQuery("SELECT * FROM Attendance"); 
+		DBUtil.dump(rs);
+		st.close();
+		conn.commit();
+		conn.close();
+	}
 
 }
