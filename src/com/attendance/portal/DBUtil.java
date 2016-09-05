@@ -115,11 +115,13 @@ public class DBUtil {
                 res = Integer.valueOf(o.toString());
             }
         }
+        //System.out.println("getTotal value "+res);
 		return res;
 	}
 	
+	
 	public static java.sql.Date sqlDate(String date) throws ParseException{
-		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 		java.util.Date javaDate = sdf1.parse(date);
 		return new java.sql.Date(javaDate.getTime()); 
 	}

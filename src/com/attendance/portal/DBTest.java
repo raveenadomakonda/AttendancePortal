@@ -25,7 +25,7 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Student VALUES ('3','Poma','Akhil','RV',4,'CSE',8178969617) "); 
 		st.executeUpdate("INSERT INTO Student VALUES ('4','Goma','Abhishek','MV',4,'CSE',8178969617) "); 
 		
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'1') "); 
+		/*st.executeUpdate("INSERT INTO Course_Student VALUES (1,'1') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'2') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'3') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'4') "); 
@@ -48,25 +48,41 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'3') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'4') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'5') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'6') "); */
 		
 		LinkedList<String> absentees = new LinkedList<String>();
-		absentees.add("3");
-		absentees.add("4");
-		System.out.println(EnterAttendance.enterAttendance(db, 1, "2016-09-04", absentees));
-		ResultSet rs = st.executeQuery("SELECT * FROM Attendance");
 		
+		//absentees.add("3");
+		//absentees.add("4");
+		LinkedList<String> absentee = new LinkedList<String>();
+		absentee.add("1");
+		System.out.println(EnterAttendance.enterAttendance(db, 1, "2016-09-04", absentee));
+		System.out.println(EnterAttendance.enterAttendance(db, 2, "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, 3, "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, 4, "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, 5, "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, 6, "2016-09-04", absentees));
+		//System.out.println(EnterAttendance.enterAttendance(db, 1, "2016-09-05", absentees));
+		//ResultSet rs = st.executeQuery("SELECT * FROM Attendance");
+		//ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM Attendance WHERE StudentId = '1' AND CourseId = '1' AND Status = 'Present'");
 		//ResultSet rs = st.executeQuery("SELECT * FROM Login");
 		//ResultSet rs = st.executeQuery("SELECT Id FROM Login");
-		dump(rs); 
+		//dump(rs); 
+		//System.out.println();
 		//System.out.println(dumpToList(rs));
 		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
 		//System.out.println(Course.addCourse(db, 1,"Java"));
 		//System.out.println(Course.deleteCourse(db, 1));
-		System.out.println(Faculty.addFaculty(db, "1", "a", "b", "123", "qwerty"));
+		/*System.out.println(Faculty.addFaculty(db, "1", "a", "b", "123", "qwerty"));
 		System.out.println(Faculty.deleteFaculty(db, "1"));
 		System.out.println(Student.addStudent(db, "5", "lastName", "firstName", "fathersName", 4, "branch", "phone", "password"));
-		System.out.println(Student.deleteStudent(db, "5"));
+		System.out.println(Student.deleteStudent(db, "5"));*/
+		Attendance at = ViewAttendance.viewAttendance(db, "1");
+		System.out.println(at.percentage);
+		System.out.println(at.totalClasses);
+		System.out.println(at.totalPresent);
+		System.out.println(at.name);
+		System.out.println(at.sub1+at.Sub1Total+at.Sub1Present);
 		//System.out.println();
 		//Faculty.viewFaculty(db,1);
 		//Student.viewStudent(db);
