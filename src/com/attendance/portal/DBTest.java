@@ -25,30 +25,42 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Student VALUES ('3','Poma','Akhil','RV',4,'CSE',8178969617) "); 
 		st.executeUpdate("INSERT INTO Student VALUES ('4','Goma','Abhishek','MV',4,'CSE',8178969617) "); 
 		
-		/*st.executeUpdate("INSERT INTO Course_Student VALUES (1,'1') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'2') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'3') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'4') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'5') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'6') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'1') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'2') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'3') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'4') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'5') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'6') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'1') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'2') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'3') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'4') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'5') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'6') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'1') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'2') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'3') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'4') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'5') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'6') "); */
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('SE','1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('SE','2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('SE','3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('SE','4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('SE','5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('SE','6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('OS','1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('OS','2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('OS','3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('OS','4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('OS','5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('OS','6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('CPP','1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('CPP','2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('CPP','3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('CPP','4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('CPP','5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('CPP','6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Linux','1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Linux','2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Linux','3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Linux','4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Linux','5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('Linux','6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','6') "); 
 		
 		LinkedList<String> absentees = new LinkedList<String>();
 		
@@ -56,18 +68,19 @@ public class DBTest {
 		//absentees.add("4");
 		LinkedList<String> absentee = new LinkedList<String>();
 		absentee.add("1");
-		System.out.println(EnterAttendance.enterAttendance(db, 1, "2016-09-04", absentee));
-		System.out.println(EnterAttendance.enterAttendance(db, 2, "2016-09-04", absentees));
-		System.out.println(EnterAttendance.enterAttendance(db, 3, "2016-09-04", absentees));
-		System.out.println(EnterAttendance.enterAttendance(db, 4, "2016-09-04", absentees));
-		System.out.println(EnterAttendance.enterAttendance(db, 5, "2016-09-04", absentees));
-		System.out.println(EnterAttendance.enterAttendance(db, 6, "2016-09-04", absentees));
-		//System.out.println(EnterAttendance.enterAttendance(db, 1, "2016-09-05", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, "1", "2016-09-04", absentee));
+		System.out.println(EnterAttendance.enterAttendance(db, "2", "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, "3", "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, "4", "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, "5", "2016-09-04", absentees));
+		System.out.println(EnterAttendance.enterAttendance(db, "6", "2016-09-04", absentees));
+		//System.out.println(EnterAttendance.enterAttendance(db, "1", "2016-09-05", absentees));
 		//ResultSet rs = st.executeQuery("SELECT * FROM Attendance");
 		//ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM Attendance WHERE StudentId = '1' AND CourseId = '1' AND Status = 'Present'");
 		//ResultSet rs = st.executeQuery("SELECT * FROM Login");
 		//ResultSet rs = st.executeQuery("SELECT Id FROM Login");
-		//dump(rs); 
+		ResultSet rs = st.executeQuery("SELECT * FROM Course_Student");
+		dump(rs); 
 		//System.out.println();
 		//System.out.println(dumpToList(rs));
 		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
@@ -112,7 +125,7 @@ public class DBTest {
 				+ "Phone varchar(255))");
 		//System.out.println("Faculty table created");
 		st.executeUpdate("CREATE TABLE Course ("
-				+"CourseId int,"
+				+"CourseId varchar(255),"
 				+"CourseName varchar(255))");
 		//System.out.println("Course Table Created");
 		st.executeUpdate("CREATE TABLE Login ("
@@ -122,14 +135,14 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin'),('Raveena','rav123','Student'),('Sunny','sun123','Faculty')");
 		//System.out.println("Login Table created");
 		st.executeUpdate("CREATE TABLE Course_Faculty("
-				+ "CourseId int, "
+				+ "CourseId varchar(255), "
 				+ "FacultyId varchar(255))");
 		st.executeUpdate("CREATE TABLE Course_Student("
-				+ "CourseId int, "
+				+ "CourseId varchar(255), "
 				+ "StudentId varchar(255))");
 		st.executeUpdate("CREATE TABLE Attendance("
 				+ "StudentId varchar(255), "
-				+ "CourseId int, "
+				+ "CourseId varchar(255), "
 				+ "Date date, "
 				+ "Status varchar(255))");
 		System.out.println("All tables created");
