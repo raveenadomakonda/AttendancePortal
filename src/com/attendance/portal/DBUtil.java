@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -83,5 +87,26 @@ public class DBUtil {
             }
             System.out.println(" ");
         }
-    }      
+    }     
+	
+	public static LinkedList<String> dumpToList(ResultSet rs) throws SQLException{
+		ResultSetMetaData meta   = rs.getMetaData();
+        int colmax = meta.getColumnCount();
+        int i;
+        Object o = null;
+        LinkedList<String> ll = new LinkedList<String>();
+        for (; rs.next(); ) {
+            for (i = 0; i < colmax; ++i) {
+                o = rs.getObject(i + 1);    
+                ll.add(o.toString());
+            }
+        }
+		return ll;
+	}
+	
+	public static java.sql.Date sqlDate(String date) throws ParseException{
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+		java.util.Date javaDate = sdf1.parse(date);
+		return new java.sql.Date(javaDate.getTime()); 
+	}
 }

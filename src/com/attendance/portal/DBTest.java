@@ -2,6 +2,9 @@ package com.attendance.portal;
 
 
 import java.sql.*;
+import java.text.ParseException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -11,18 +14,61 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 public class DBTest {
-	public static void main(String[] args) throws SQLException{
+	public static void main(String[] args) throws SQLException, ParseException{
 		DataSource db = dataSource();
 		createTable(db);
 		Connection conn = db.getConnection();
 		java.sql.Statement st = null;
 		st = conn.createStatement();        
 		st.executeUpdate("INSERT INTO Student VALUES (1,'Doma','Anurag','SRD',4,'CSE',8178969617) "); 
-		ResultSet rs = st.executeQuery("SELECT * FROM Login");
+		st.executeUpdate("INSERT INTO Student VALUES (2,'Toma','Aditya','SRD',4,'CSE',8178969617) "); 
+		st.executeUpdate("INSERT INTO Student VALUES (3,'Poma','Akhil','RV',4,'CSE',8178969617) "); 
+		st.executeUpdate("INSERT INTO Student VALUES (4,'Goma','Abhishek','MV',4,'CSE',8178969617) "); 
+		
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,1) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,2) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,3) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,4) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,5) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,6) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,1) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,2) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,3) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,4) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,5) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,6) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,1) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,2) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,3) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,4) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,5) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,6) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,1) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,2) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,3) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,4) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,5) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,6) "); 
+		
+		LinkedList<String> absentees = new LinkedList<String>();
+		absentees.add("3");
+		absentees.add("4");
+		System.out.println(EnterAttendance.enterAttendance(db, 1, "2016-09-04", absentees));
+		ResultSet rs = st.executeQuery("SELECT * FROM Attendance");
+		
+		//ResultSet rs = st.executeQuery("SELECT * FROM Login");
+		//ResultSet rs = st.executeQuery("SELECT Id FROM Login");
 		dump(rs); 
+		//System.out.println(dumpToList(rs));
 		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
-		System.out.println(Course.addCourse(db, 1,"Java"));
-		System.out.println(Course.deleteCourse(db, 1));
+		//System.out.println(Course.addCourse(db, 1,"Java"));
+		//System.out.println(Course.deleteCourse(db, 1));
+		//System.out.println(Faculty.addFaculty(db, 1, "a", "b", "123", "qwerty"));
+		//System.out.println(Faculty.deleteFaculty(db, 2));
+		//System.out.println();
+		//Faculty.viewFaculty(db,1);
+		//Student.viewStudent(db);
+		//Student.viewStudent(db,1);
 		st.close();
 		conn.commit();
 		conn.close();
@@ -103,4 +149,21 @@ public class DBTest {
         }
     }       
 	
+	public static LinkedList<String> dumpToList(ResultSet rs) throws SQLException{
+		ResultSetMetaData meta   = rs.getMetaData();
+        int colmax = meta.getColumnCount();
+        int i;
+        Object o = null;
+        LinkedList<String> ll = new LinkedList<String>();
+        for (; rs.next(); ) {
+            for (i = 0; i < colmax; ++i) {
+                o = rs.getObject(i + 1);    // Is SQL the first column is indexed
+                // with 1 not 0
+                //System.out.print(o.toString() + " ");
+                ll.add(o.toString());
+            }
+            //System.out.println(" ");
+        }
+		return ll;
+	}
 }

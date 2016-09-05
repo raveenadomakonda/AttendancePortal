@@ -33,8 +33,6 @@ public class Faculty {
 		conn.commit();
 		conn.close();
 		return true;
-		
-		
 	}
 	public static boolean deleteFaculty(DataSource db, int facultyId) throws SQLException{
 		Connection conn = db.getConnection();
@@ -43,7 +41,7 @@ public class Faculty {
 		p.setInt(1, facultyId);
 		int i = p.executeUpdate();
 		if(i == 0){
-			System.out.println("Could not delete Faculty table");
+			System.out.println("Could not delete from Faculty table");
 			return false;
 		}
 		String s1 = "DELETE FROM Login WHERE Id = ?";
@@ -57,9 +55,30 @@ public class Faculty {
 		conn.commit();
 		conn.close();
 		return true;
+	}
+	
+	public static void viewFaculty(DataSource db) throws SQLException{
+		Connection conn = db.getConnection();
+		java.sql.Statement st = null;
+		st = conn.createStatement();        
+		ResultSet rs = st.executeQuery("SELECT * FROM Faculty"); 
+		DBUtil.dump(rs);
+		st.close();
+		conn.commit();
+		conn.close();
 		
 	}
-	//public static int viewFaculty(DataSource db, int facultyId){
+	
+	public static void viewFaculty(DataSource db, int facultyId) throws SQLException{
+		Connection conn = db.getConnection();
+		String s = "SELECT * FROM Faculty WHERE FacultyId = ?";   
+		PreparedStatement p = conn.prepareStatement(s);
+		p.setInt(1, facultyId);
+		ResultSet rs = p.executeQuery();
+		DBUtil.dump(rs);
+		conn.commit();
+		conn.close();
 		
-	//}
+	}
+	
 }
