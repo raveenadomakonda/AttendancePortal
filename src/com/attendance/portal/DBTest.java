@@ -20,35 +20,35 @@ public class DBTest {
 		Connection conn = db.getConnection();
 		java.sql.Statement st = null;
 		st = conn.createStatement();        
-		st.executeUpdate("INSERT INTO Student VALUES (1,'Doma','Anurag','SRD',4,'CSE',8178969617) "); 
-		st.executeUpdate("INSERT INTO Student VALUES (2,'Toma','Aditya','SRD',4,'CSE',8178969617) "); 
-		st.executeUpdate("INSERT INTO Student VALUES (3,'Poma','Akhil','RV',4,'CSE',8178969617) "); 
-		st.executeUpdate("INSERT INTO Student VALUES (4,'Goma','Abhishek','MV',4,'CSE',8178969617) "); 
+		st.executeUpdate("INSERT INTO Student VALUES ('1','Doma','Anurag','SRD',4,'CSE',8178969617) "); 
+		st.executeUpdate("INSERT INTO Student VALUES ('2','Toma','Aditya','SRD',4,'CSE',8178969617) "); 
+		st.executeUpdate("INSERT INTO Student VALUES ('3','Poma','Akhil','RV',4,'CSE',8178969617) "); 
+		st.executeUpdate("INSERT INTO Student VALUES ('4','Goma','Abhishek','MV',4,'CSE',8178969617) "); 
 		
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,1) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,2) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,3) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,4) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,5) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (1,6) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,1) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,2) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,3) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,4) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,5) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (2,6) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,1) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,2) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,3) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,4) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,5) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (3,6) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,1) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,2) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,3) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,4) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,5) "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES (4,6) "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (1,'6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (2,'6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (3,'6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'1') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'2') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'3') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'4') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'5') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES (4,'6') "); 
 		
 		LinkedList<String> absentees = new LinkedList<String>();
 		absentees.add("3");
@@ -63,8 +63,10 @@ public class DBTest {
 		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
 		//System.out.println(Course.addCourse(db, 1,"Java"));
 		//System.out.println(Course.deleteCourse(db, 1));
-		//System.out.println(Faculty.addFaculty(db, 1, "a", "b", "123", "qwerty"));
-		//System.out.println(Faculty.deleteFaculty(db, 2));
+		System.out.println(Faculty.addFaculty(db, "1", "a", "b", "123", "qwerty"));
+		System.out.println(Faculty.deleteFaculty(db, "1"));
+		System.out.println(Student.addStudent(db, "5", "lastName", "firstName", "fathersName", 4, "branch", "phone", "password"));
+		System.out.println(Student.deleteStudent(db, "5"));
 		//System.out.println();
 		//Faculty.viewFaculty(db,1);
 		//Student.viewStudent(db);
@@ -74,12 +76,12 @@ public class DBTest {
 		conn.close();
 	}
 	
-	private static void createTable(DataSource db) throws SQLException {
+	public static void createTable(DataSource db) throws SQLException {
 		Connection conn = db.getConnection();
 		java.sql.Statement st = null;
 		st = conn.createStatement();
 		st.executeUpdate("CREATE TABLE Student ("
-				+ "Rollno int,"
+				+ "Rollno varchar(255),"
 				+ "LastName varchar(255),"
 				+ "FirstName varchar(255),"
 				+ "FatherName varchar(255),"
@@ -88,7 +90,7 @@ public class DBTest {
 				+ "Phone varchar(255))");
 		//System.out.println("Student table created");
 		st.executeUpdate("CREATE TABLE Faculty ("
-				+ "FacultyId int,"
+				+ "FacultyId varchar(255),"
 				+ "LastName varchar(255),"
 				+ "FirstName varchar(255),"
 				+ "Phone varchar(255))");
@@ -102,16 +104,15 @@ public class DBTest {
 				+ "Password varchar(255), "
 				+ "Type varchar(255))");
 		st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin'),('Raveena','rav123','Student'),('Sunny','sun123','Faculty')");
-		
 		//System.out.println("Login Table created");
 		st.executeUpdate("CREATE TABLE Course_Faculty("
 				+ "CourseId int, "
-				+ "FacultyId int)");
+				+ "FacultyId varchar(255))");
 		st.executeUpdate("CREATE TABLE Course_Student("
 				+ "CourseId int, "
-				+ "StudentId int)");
+				+ "StudentId varchar(255))");
 		st.executeUpdate("CREATE TABLE Attendance("
-				+ "StudentId int, "
+				+ "StudentId varchar(255), "
 				+ "CourseId int, "
 				+ "Date date, "
 				+ "Status varchar(255))");

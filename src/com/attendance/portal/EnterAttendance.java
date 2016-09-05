@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 public class EnterAttendance {
 	public static boolean enterAttendance(DataSource db,int courseId, String date, LinkedList<String> absentees) throws SQLException, ParseException{ 
 		Connection conn = db.getConnection();
-		LinkedList<Integer> integerAbsentees = new LinkedList<Integer>();
+		//LinkedList<Integer> integerAbsentees = new LinkedList<Integer>();
 		java.sql.Statement st = null;
 		st = conn.createStatement();        
 		ResultSet rs = st.executeQuery("SELECT DISTINCT Rollno FROM Student"); 
@@ -30,8 +30,8 @@ public class EnterAttendance {
 		//}	
 		list.removeAll(absentees);
 		while(!list.isEmpty()){
-			int rollno = Integer.parseInt(list.remove());
-			p.setInt(1, rollno);
+			String rollno = list.remove();
+			p.setString(1, rollno);
 			p.setString(4, "Present");
 			int i = p.executeUpdate();
 			if(i == 0){
@@ -40,8 +40,8 @@ public class EnterAttendance {
 			}
 		}
 		while(!absentees.isEmpty()){
-			int rollno = Integer.parseInt(absentees.remove());
-			p.setInt(1, rollno);
+			String rollno = absentees.remove();
+			p.setString(1, rollno);
 			p.setString(4, "Absent");
 			int j = p.executeUpdate();
 			if(j == 0){

@@ -32,7 +32,7 @@ public class DBUtil {
 		java.sql.Statement st = null;
 		st = conn.createStatement();
 		st.executeUpdate("CREATE TABLE Student ("
-				+ "Rollno int,"
+				+ "Rollno varchar(255),"
 				+ "LastName varchar(255),"
 				+ "FirstName varchar(255),"
 				+ "FatherName varchar(255),"
@@ -41,7 +41,7 @@ public class DBUtil {
 				+ "Phone varchar(255))");
 		//System.out.println("Student table created");
 		st.executeUpdate("CREATE TABLE Faculty ("
-				+ "FacultyId int,"
+				+ "FacultyId varchar(255),"
 				+ "LastName varchar(255),"
 				+ "FirstName varchar(255),"
 				+ "Phone varchar(255))");
@@ -58,12 +58,12 @@ public class DBUtil {
 		//System.out.println("Login Table created");
 		st.executeUpdate("CREATE TABLE Course_Faculty("
 				+ "CourseId int, "
-				+ "FacultyId int)");
+				+ "FacultyId varchar(255))");
 		st.executeUpdate("CREATE TABLE Course_Student("
 				+ "CourseId int, "
-				+ "StudentId int)");
+				+ "StudentId varchar(255))");
 		st.executeUpdate("CREATE TABLE Attendance("
-				+ "StudentId int, "
+				+ "StudentId varchar(255), "
 				+ "CourseId int, "
 				+ "Date date, "
 				+ "Status varchar(255))");

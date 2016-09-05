@@ -9,11 +9,11 @@ import javax.sql.DataSource;
 
 public class Student {
 
-	public static boolean addStudent(DataSource db, int rollno, String lastName, String firstName, String fathersName, int year, String branch, String phone, String password) throws SQLException{
+	public static boolean addStudent(DataSource db, String rollno, String lastName, String firstName, String fathersName, int year, String branch, String phone, String password) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "INSERT INTO Student VALUES(?,?,?,?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setInt(1, rollno);
+		p.setString(1, rollno);
 		p.setString(2,lastName);
 		p.setString(3,firstName);
 		p.setString(4,fathersName);
@@ -27,7 +27,7 @@ public class Student {
 		}
 		String s1 = "INSERT INTO Login VALUES (?,?,'Student')";
 		PreparedStatement q = conn.prepareStatement(s1);
-		q.setInt(1, rollno);
+		q.setString(1, rollno);
 		q.setString(2,password);
 		int j = q.executeUpdate();
 		if(j == 0){
@@ -39,11 +39,11 @@ public class Student {
 		return true;
 	}
 	
-	public static boolean deleteStudent(DataSource db, int rollno) throws SQLException{
+	public static boolean deleteStudent(DataSource db, String rollno) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "DELETE FROM Student WHERE Rollno = ? ";
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setInt(1, rollno);
+		p.setString(1, rollno);
 		int i = p.executeUpdate();
 		if(i == 0){
 			System.out.println("Could not delete from Student table");
@@ -51,7 +51,7 @@ public class Student {
 		}
 		String s1 = "DELETE FROM Login WHERE Id = ?";
 		PreparedStatement q = conn.prepareStatement(s1);
-		q.setInt(1, rollno);
+		q.setString(1, rollno);
 		int j = q.executeUpdate();
 		if(j == 0){
 			System.out.println("Could not delete Student info from Login table");
@@ -74,11 +74,11 @@ public class Student {
 		
 	}
 	
-	public static void viewStudent(DataSource db, int rollno) throws SQLException{
+	public static void viewStudent(DataSource db, String rollno) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "SELECT * FROM Student WHERE Rollno = ?";   
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setInt(1, rollno);
+		p.setString(1, rollno);
 		ResultSet rs = p.executeQuery();
 		DBUtil.dump(rs);
 		conn.commit();

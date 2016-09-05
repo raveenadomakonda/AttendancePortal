@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 public class Faculty {
-	public static boolean addFaculty(DataSource db, int facultyId, String lastName, String firstName, String phone,String password) throws SQLException{
+	public static boolean addFaculty(DataSource db, String facultyId, String lastName, String firstName, String phone,String password) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "INSERT INTO Faculty VALUES(?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setInt(1, facultyId);
+		p.setString(1, facultyId);
 		p.setString(2,lastName);
 		p.setString(3,firstName);
 		p.setString(4, phone);
@@ -23,7 +23,7 @@ public class Faculty {
 		}
 		String s1 = "INSERT INTO Login VALUES (?,?,'Faculty')";
 		PreparedStatement q = conn.prepareStatement(s1);
-		q.setInt(1, facultyId);
+		q.setString(1, facultyId);
 		q.setString(2,password);
 		int j = q.executeUpdate();
 		if(j == 0){
@@ -34,11 +34,11 @@ public class Faculty {
 		conn.close();
 		return true;
 	}
-	public static boolean deleteFaculty(DataSource db, int facultyId) throws SQLException{
+	public static boolean deleteFaculty(DataSource db, String facultyId) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "DELETE FROM Faculty WHERE FacultyId = ? ";
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setInt(1, facultyId);
+		p.setString(1, facultyId);
 		int i = p.executeUpdate();
 		if(i == 0){
 			System.out.println("Could not delete from Faculty table");
@@ -46,7 +46,7 @@ public class Faculty {
 		}
 		String s1 = "DELETE FROM Login WHERE Id = ?";
 		PreparedStatement q = conn.prepareStatement(s1);
-		q.setInt(1, facultyId);
+		q.setString(1, facultyId);
 		int j = q.executeUpdate();
 		if(j == 0){
 			System.out.println("Could not delete Facluty info from Login table");
@@ -69,11 +69,11 @@ public class Faculty {
 		
 	}
 	
-	public static void viewFaculty(DataSource db, int facultyId) throws SQLException{
+	public static void viewFaculty(DataSource db, String facultyId) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "SELECT * FROM Faculty WHERE FacultyId = ?";   
 		PreparedStatement p = conn.prepareStatement(s);
-		p.setInt(1, facultyId);
+		p.setString(1, facultyId);
 		ResultSet rs = p.executeQuery();
 		DBUtil.dump(rs);
 		conn.commit();
