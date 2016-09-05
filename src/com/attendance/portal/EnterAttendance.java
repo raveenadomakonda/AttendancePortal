@@ -20,7 +20,7 @@ public class EnterAttendance {
 		ResultSet rs = st.executeQuery("SELECT DISTINCT Rollno FROM Student"); 
 		LinkedList<String> list = DBUtil.dumpToList(rs);
 		System.out.println(list);
-		st.close();
+		//st.close();
 		String s = "INSERT INTO Attendance VALUES(?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
 		p.setInt(2, courseId);
@@ -49,6 +49,10 @@ public class EnterAttendance {
 				return false;
 			}
 		}
+		
+		ResultSet res = st.executeQuery("SELECT * FROM Student"); 
+		DBUtil.dump(res);
+		st.close();
 		conn.commit();
 		conn.close();
 		

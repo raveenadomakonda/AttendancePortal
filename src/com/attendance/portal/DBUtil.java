@@ -104,6 +104,20 @@ public class DBUtil {
 		return ll;
 	}
 	
+	public static int getTotal(ResultSet rs) throws SQLException{
+		ResultSetMetaData meta   = rs.getMetaData();
+        int colmax = meta.getColumnCount();
+        int i,res=0;
+        Object o = null;
+        for (; rs.next(); ) {
+            for (i = 0; i < colmax; ++i) {
+                o = rs.getObject(i + 1);    
+                res = Integer.valueOf(o.toString());
+            }
+        }
+		return res;
+	}
+	
 	public static java.sql.Date sqlDate(String date) throws ParseException{
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
 		java.util.Date javaDate = sdf1.parse(date);
