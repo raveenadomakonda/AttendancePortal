@@ -43,20 +43,37 @@ public class Controllers {
 	
 	@RequestMapping(value = "/addFacultyDo", method = RequestMethod.GET)
 	public @ResponseBody
-	String login(
+	String addFaculty(
 			@RequestParam(value = "firstName", required = true) String firstName,
             @RequestParam(value = "lastName", required = true) String lastName,
             @RequestParam(value = "id", required = true) String id,
             @RequestParam(value = "phoneNumber", required = true) String phoneNumber,
             @RequestParam(value = "password", required = true) String password) {
 		System.out.println(firstName + "	" + lastName + "	" + id + "	" + phoneNumber + "	" + password);
-		Validation result;
-		/*try{
-			result = loginHandler.validate(dataSource, firstName, lastName, id, phoneNumber, password);
+		boolean result;
+		try{
+			result = Faculty.addFaculty(dataSource, Integer.parseInt(id), lastName, firstName, phoneNumber, password);
+			Faculty.viewFaculty(dataSource);
 		} catch(Exception e) {
 			e.printStackTrace();
-			result = new Validation(false, "Error");
-		}*/
-		return gson.toJson(false);
+			result = false;
+		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping(value = "/deleteFacultyDo", method = RequestMethod.GET)
+	public @ResponseBody
+	String deleteFaculty(
+            @RequestParam(value = "id", required = true) String id) {
+		System.out.println(id);
+		boolean result;
+		try{
+			result = Faculty.deleteFaculty(dataSource, Integer.parseInt(id));
+			Faculty.viewFaculty(dataSource);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		return gson.toJson(result);
 	}
 }

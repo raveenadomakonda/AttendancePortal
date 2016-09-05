@@ -11,19 +11,22 @@ webControllers.controller('sampleCtrl', [ '$scope', '$http', function($scope, $h
 
 webControllers.controller('addFacultyCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.errorFlag = false;
+	$scope.successFlag = false;
     $scope.addFaculty = function(){
         $scope.errorFlag = false;
-        $http.get('/AttendancePortal/rest/addFacultyDo', {params:{firstName:$scope.firstName, lastName:$scope.lastName, id:$scope.id, phoneNumber:$scope.phoneNumber, password:$password}}).success(function(data) {
+        $http.get('/AttendancePortal/rest/addFacultyDo', {params:{firstName:$scope.firstName, lastName:$scope.lastName, id:$scope.id, phoneNumber:$scope.phoneNumber, password:$scope.password}}).success(function(data) {
             console.log("Got data from server")
             $scope.response = data;
             if(data == false) {
             	$scope.errorFlag = true;
+            	$scope.successFlag = false;
             } else {
-            		$location.path("admin");
+            	$scope.successFlag = true;
             }
           }).error(function(){
               console.log("No reply from server");
               $scope.errorFlag = true;
+              $scope.successFlag = false;
             });
 
     	$scope.firstName = null;
@@ -43,7 +46,26 @@ webControllers.controller('adminCtrl', [ '$scope', '$http', function($scope, $ht
 }]);
 
 webControllers.controller('deleteFacultyCtrl', [ '$scope', '$http', function($scope, $http) {
-	
+	$scope.errorFlag = false;
+	$scope.successFlag = false;
+    $scope.deleteFaculty = function(){
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/deleteFacultyDo', {params:{id:$scope.id}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data == false) {
+            	$scope.errorFlag = true;
+            	$scope.successFlag = false;
+            } else {
+            	$scope.successFlag = true;
+            }
+          }).error(function(){
+              console.log("No reply from server");
+              $scope.errorFlag = true;
+              $scope.successFlag = false;
+            });
+    	$scope.id = null;
+    }
 }]);
 
 webControllers.controller('deleteStudentCtrl', [ '$scope', '$http', function($scope, $http) {

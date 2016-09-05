@@ -22,13 +22,18 @@
 	<p>Enter the details to add faculty. All fields are required!</p>
 	<div ng-show="errorFlag">
 		<div class="alert alert-danger">
-			<strong>Invalid Credentials!</strong> Please check username and password.
+			<strong>Add failed!</strong> Please enter all fields correctly.
 
 		</div>
 	</div>
-	
+	<div ng-show="successFlag">
+		<div class="alert alert-success">
+			<strong>Added successfully</strong> Faculty has been added.
+
+		</div>
+	</div>
+	response: {{response}}
 	<form>
-		id, lastname, firstname, ph, password
 		<div class="form-group">
 			<label for="firstName">First Name</label> <input type="text"
 				class="form-control" id="firstName" placeholder="first name"
@@ -45,9 +50,9 @@
 				ng-model="id">
 		</div>
 		<div class="form-group">
-			<label for="phoneNo">Phone Number</label> <input type="text"
-				class="form-control" id="id" placeholder="Phone number"
-				ng-model="id">
+			<label for="phoneNumber">Phone Number</label> <input type="text"
+				class="form-control" id="phoneNumber" placeholder="Phone number"
+				ng-model="phoneNumber">
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label> <input type="password"
@@ -55,7 +60,7 @@
 				placeholder="*****"
 				ng-model="password">
 		</div>
-		<button type="submit" class="btn btn-success" ng-click='loginCheck()'>Submit</button>
+		<button type="submit" class="btn btn-success" ng-click='addFaculty()'>Submit</button>
 	</form>
 	
 </div>
