@@ -42,7 +42,7 @@ webControllers.controller('addStudentCtrl', [ '$scope', '$http', function($scope
 	$scope.successFlag = false;
     $scope.addFaculty = function(){
         $scope.errorFlag = false;
-        $http.get('/AttendancePortal/rest/addStudentDo', {params:{firstName:$scope.firstName, lastName:$scope.lastName, fathersName:$scope.fathersName, branch:$scope.branch, year:$scope.year, id:$scope.id, phoneNumber:$scope.phoneNumber, password:$scope.password}}).success(function(data) {
+        $http.get('/AttendancePortal/rest/addStudentDo', {params:{firstName:$scope.firstName, lastName:$scope.lastName, fathersName:$scope.fathersName, branch:$scope.branch, year:$scope.year, id:$scope.id, phoneNumber:$scope.phoneNumber, password:$scope.password, courses:$scope.courses}}).success(function(data) {
             console.log("Got data from server")
             $scope.response = data;
             if(data == false) {
@@ -65,6 +65,7 @@ webControllers.controller('addStudentCtrl', [ '$scope', '$http', function($scope
     	$scope.phoneNumber = null;
     	$scope.password = null;
     	$scope.year = null;
+    	$scope.courses = null;
     }
 }]);
 

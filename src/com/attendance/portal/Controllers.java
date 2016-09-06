@@ -90,12 +90,16 @@ public class Controllers {
             @RequestParam(value = "year", required = true) String year,
             @RequestParam(value = "id", required = true) String id,
             @RequestParam(value = "phoneNumber", required = true) String phoneNumber,
+            @RequestParam(value = "courses", required = true) String courses,
             @RequestParam(value = "password", required = true) String password) {
 		System.out.println(firstName + "	" + lastName + "	" + id + "	" + phoneNumber + "	" + password);
 		boolean result;
 		try{
 			result = Student.addStudent(dataSource, id, lastName, firstName, fathersName, Integer.parseInt(year), branch, phoneNumber, password);
 			Student.viewStudent(dataSource);
+			//Enroll student in courses
+			LinkedList<String> courseList = (courses == null || courses.isEmpty()) ? new LinkedList<String>() : new LinkedList<String>(Arrays.asList(courses.split(" ")));
+			Course_Student.addCourse_Student(dataSource, courseList, id);
 		} catch(Exception e) {
 			e.printStackTrace();
 			result = false;
