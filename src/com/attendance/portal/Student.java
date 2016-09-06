@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
 public class Student {
 
-	public static boolean addStudent(DataSource db, String rollno, String lastName, String firstName, String fathersName, int year, String branch, String phone, String password) throws SQLException{
+	public static boolean addStudent(DataSource db, String rollno, String lastName, String firstName, String fathersName, int year, String branch, String phone, String password, LinkedList<String> courses) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "INSERT INTO Student VALUES(?,?,?,?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
@@ -34,6 +35,21 @@ public class Student {
 			System.out.println("Could not insert Student info into Login table");
 			return false;
 		}
+		
+		// This part of code is not tested
+		/*String sz = "INSERT INTO Course_Student VALUES(?,?)";
+		PreparedStatement z = conn.prepareStatement(sz);
+		z.setString(2, rollno);
+		for(String sc :courses){
+			z.setString(1, sc);
+			int k = z.executeUpdate();
+			if(k == 0){
+				System.out.println("Could not insert Student's course into Course_Student table");
+				return false;
+			}
+			
+		}*/
+		
 		conn.commit();
 		conn.close();
 		return true;

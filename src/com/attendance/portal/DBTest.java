@@ -25,7 +25,7 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Student VALUES ('3','Poma','Akhil','RV',4,'CSE',8178969617) "); 
 		st.executeUpdate("INSERT INTO Student VALUES ('4','Goma','Abhishek','MV',4,'CSE',8178969617) "); 
 		
-		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','1') "); 
+		/*st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','1') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','2') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','3') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES ('Java','4') "); 
@@ -60,7 +60,7 @@ public class DBTest {
 		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','3') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','4') "); 
 		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','5') "); 
-		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','6') "); 
+		st.executeUpdate("INSERT INTO Course_Student VALUES ('NS','6') "); */
 		
 		LinkedList<String> absentees = new LinkedList<String>();
 		
@@ -79,8 +79,16 @@ public class DBTest {
 		//ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM Attendance WHERE StudentId = '1' AND CourseId = '1' AND Status = 'Present'");
 		//ResultSet rs = st.executeQuery("SELECT * FROM Login");
 		//ResultSet rs = st.executeQuery("SELECT Id FROM Login");
-		//ResultSet rs = st.executeQuery("SELECT * FROM Course_Student");
-		//dump(rs); 
+		LinkedList<String> llist = new LinkedList<String>();
+		llist.add("Java");
+		llist.add("SE");
+		llist.add("OS");
+		llist.add("CPP");
+		llist.add("Linux");
+		llist.add("NS");
+		System.out.println(Course_Student.addCourse_Student(db, llist, "1"));
+		ResultSet rs = st.executeQuery("SELECT * FROM Course_Student");
+		dump(rs); 
 		//System.out.println();
 		//System.out.println(dumpToList(rs));
 		//st.executeUpdate("INSERT INTO Faculty VALUES(2,'dell','inspiron','12345')");
@@ -90,12 +98,12 @@ public class DBTest {
 		System.out.println(Faculty.deleteFaculty(db, "1"));
 		System.out.println(Student.addStudent(db, "5", "lastName", "firstName", "fathersName", 4, "branch", "phone", "password"));
 		System.out.println(Student.deleteStudent(db, "5"));*/
-		Attendance at = ViewAttendance.viewAttendance(db, "1");
+		/*Attendance at = ViewAttendance.viewAttendance(db, "1");
 		System.out.println(at.percentage);
 		System.out.println(at.totalClasses);
 		System.out.println(at.totalPresent);
 		System.out.println(at.name);
-		System.out.println(at.sub2+at.Sub2Total+at.Sub2Present);
+		System.out.println(at.sub2+at.Sub2Total+at.Sub2Present);*/
 		//System.out.println();
 		//Faculty.viewFaculty(db,1);
 		//Student.viewStudent(db);
@@ -132,7 +140,7 @@ public class DBTest {
 				+ "Id varchar(255), "
 				+ "Password varchar(255), "
 				+ "Type varchar(255))");
-		st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin'),('Raveena','rav123','Student'),('Sunny','sun123','Faculty')");
+		//st.executeUpdate("INSERT INTO Login VALUES('Anurag','anu123','Admin'),('Raveena','rav123','Student'),('Sunny','sun123','Faculty')");
 		//System.out.println("Login Table created");
 		st.executeUpdate("CREATE TABLE Course_Faculty("
 				+ "CourseId varchar(255), "
