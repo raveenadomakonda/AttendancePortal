@@ -55,7 +55,7 @@ public class ViewAttendance {
 		t.setString(1,rollno);
 		ResultSet res12 = t.executeQuery();
 		LinkedList<String> names = DBUtil.dumpToList(res12);
-		String studentName = names.getFirst()+ names.getLast();
+		String studentName = names.getFirst()+" "+ names.getLast();
 		String sub1 = courseList.get(0);
 		String sub2 = courseList.get(1);
 		String sub3 = courseList.get(2);
