@@ -9,7 +9,7 @@
 	<div class="container-fluid">
 		<div>
 			<ul class="nav navbar-nav">
-				<li><a ng-href="#faculty/{{id}}">Faculty Home</a></li>
+				<li><a ng-href="#faculty/{{fid}}">Faculty Home</a></li>
 				<li><a href="#login">Logout</a></li>
 			</ul>
 		</div>
@@ -18,15 +18,55 @@
 
 <div id=pageContent>
 
-	<h1>Attendance for your courses</h1>
+	<h1>Attendance for StudentID</h1>
 	<div ng-show="errorFlag">
 		<div class="alert alert-danger">
 			<strong>Cannot retrieve attendance!</strong> Server error.
 
 		</div>
 	</div>
-	response: {{response}} Param: {{val}}
 
+	<form>
+		<div class="form-group">
+			<label for="id">Student ID</label> <input type="text"
+				class="form-control" id="id" placeholder="Unique student id"
+				ng-model="id">
+		</div>
+		<button type="submit" class="btn btn-success" ng-click='getAttendance()'>get Attendance</button>
+	</form>
+
+	<div ng-show="successFlag">
+	<br><br>
+	<h3>Student's Attendance</h3>
+	<p>Name: {{response.name}}</p>
+	<p>Percentage: {{response.percentage}}</p>
+	<p>Total Present / Total Classes: {{response.totalPresent}}/{{response.totalClasses}}</p>
+	
+	<h3>Subject wise attendance</h3>
+	   <p>Subject: {{response.sub1}} <br>
+	   Total Present / Total Classes: {{response.Sub1Present}}/{{response.Sub1Total}}</p>
+	   
+	   <p>Subject: {{response.sub2}} <br>
+	   Total Present / Total Classes: {{response.Sub2Present}}/{{response.Sub2Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub3}} <br>
+	   Total Present / Total Classes: {{response.Sub3Present}}/{{response.Sub3Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub4}} <br>
+	   Total Present / Total Classes: {{response.Sub4Present}}/{{response.Sub4Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub5}} <br>
+	   Total Present / Total Classes: {{response.Sub5Present}}/{{response.Sub5Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub6}} <br>
+	   Total Present / Total Classes: {{response.Sub6Present}}/{{response.Sub6Total}}</p>
+	   
+		
+	</div>
 	
 </div>
 

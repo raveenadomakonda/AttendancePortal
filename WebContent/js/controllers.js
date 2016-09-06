@@ -1,14 +1,5 @@
 var webControllers = angular.module('webControllers', []);
 
-webControllers.controller('sampleCtrl', [ '$scope', '$http', function($scope, $http) {
-	
-	$scope.sampleVar = "Hello World!!";
-	$http.get('/AttendancePortal/rest/sampleRestApi').success(function(data) {
-		  console.log("Profile data"+ data);  
-		  $scope.restCallData = data;
-		});
-}]);
-
 webControllers.controller('addFacultyCtrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.errorFlag = false;
 	$scope.successFlag = false;
@@ -153,10 +144,11 @@ webControllers.controller('facultyCtrl', [ '$scope', '$http', '$location', funct
 
 webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
 	$scope.val = $scope.param;
-	$scope.id = $location.path().split("/")[2];
+	$scope.fid = $location.path().split("/")[2];
 	$scope.successFlag = false;
-        $scope.errorFlag = false;
-        $http.get('/AttendancePortal/rest/facultyAttendanceViewDo', {params:{id:$scope.id}}).success(function(data) {
+    $scope.errorFlag = false;
+    $scope.getAttendance = function(){
+        $http.get('/AttendancePortal/rest/studentAttendanceViewDo', {params:{id:$scope.id}}).success(function(data) {
             console.log("Got data from server")
             $scope.response = data;
             if(data == false) {
@@ -171,6 +163,7 @@ webControllers.controller('facultyAttendanceViewCtrl', [ '$scope', '$http', '$lo
               $scope.successFlag = false;
             });
     	$scope.id = null;
+    }	
 }]);
 
 webControllers.controller('loginCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
@@ -230,7 +223,7 @@ webControllers.controller('studentAttendanceViewCtrl', [ '$scope', '$http', '$lo
               $scope.errorFlag = true;
               $scope.successFlag = false;
             });
-    	$scope.id = null;
+    	//$scope.id = null;
 }]);
 
 webControllers.controller('aboutUsCtrl', [ '$scope', '$http', function($scope, $http) {
