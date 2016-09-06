@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 public class Student {
 
-	public static boolean addStudent(DataSource db, String rollno, String lastName, String firstName, String fathersName, int year, String branch, String phone, String password, LinkedList<String> courses) throws SQLException{
+	public static boolean addStudent(DataSource db, String rollno, String lastName, String firstName, String fathersName, int year, String branch, String phone, String password) throws SQLException{
 		Connection conn = db.getConnection();
 		String s = "INSERT INTO Student VALUES(?,?,?,?,?,?,?)";
 		PreparedStatement p = conn.prepareStatement(s);
