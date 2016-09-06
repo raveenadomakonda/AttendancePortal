@@ -127,8 +127,9 @@ public class Controllers {
             @RequestParam(value = "studentList", required = true) String studentList) {
 		System.out.println(courseId + "	" + date + "	" + studentList);
 		boolean result;
+		LinkedList<String> absentees = (studentList == null || studentList.isEmpty()) ? new LinkedList<String>() : new LinkedList<String>(Arrays.asList(studentList.split(" ")));
 		try{
-			result = EnterAttendance.enterAttendance(dataSource, Integer.parseInt(courseId), date, new LinkedList<String>(Arrays.asList(studentList.split(" "))));
+			result = EnterAttendance.enterAttendance(dataSource, courseId, date, absentees);
 			EnterAttendance.viewAttendance(dataSource);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -151,5 +152,23 @@ public class Controllers {
 			result = false;
 		}
 		return gson.toJson(result);
+	}
+	
+	@RequestMapping(value = "/studentAttendanceViewDo", method = RequestMethod.GET)
+	public @ResponseBody
+	String studentAttendanceView(
+            @RequestParam(value = "id", required = true) String id) {
+		System.out.println(id);
+		boolean result = false;
+		Attendance attendance;
+		try{
+			attendance = ViewAttendance.viewAttendance(dataSource, id);
+			//Student.viewStudent(dataSource);
+		} catch(Exception e) {
+			e.printStackTrace();
+			result = false;
+			attendance = null;
+		}
+		return gson.toJson(attendance);
 	}
 }

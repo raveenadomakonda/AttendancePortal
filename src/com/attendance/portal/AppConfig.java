@@ -25,6 +25,7 @@ public class AppConfig {
 		DataSource db = DBUtil.dataSource();
 		try{
 			DBUtil.createTable(db);
+			DBTestData.setupTestData(db);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

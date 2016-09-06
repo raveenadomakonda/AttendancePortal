@@ -1,0 +1,70 @@
+<div id=siteTitle>
+	<div id=title>
+		<p>Attendance Portal</p>
+	</div>
+</div>
+
+
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div>
+			<ul class="nav navbar-nav">
+				<li><a ng-href="#student/{{id}}">Student Home</a></li>
+				<li><a href="#login">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id=pageContent>
+
+	<h1>Attendance for your courses</h1>
+	<div ng-show="errorFlag">
+		<div class="alert alert-danger">
+			<strong>Cannot retrieve attendance!</strong> Server error.
+
+		</div>
+	</div>
+	
+	<p>Name: {{response.name}}</p>
+	<p>Percentage: {{response.percentage}}</p>
+	<p>Total Present / Total Classes: {{response.totalPresent}}/{{response.totalClasses}}</p>
+	
+	<h3>Subject wise attendance</h3>
+	   <p>Subject: {{response.sub1}} <br>
+	   Total Present / Total Classes: {{response.Sub1Present}}/{{response.Sub1Total}}</p>
+	   
+	   <p>Subject: {{response.sub2}} <br>
+	   Total Present / Total Classes: {{response.Sub2Present}}/{{response.Sub2Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub3}} <br>
+	   Total Present / Total Classes: {{response.Sub3Present}}/{{response.Sub3Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub4}} <br>
+	   Total Present / Total Classes: {{response.Sub4Present}}/{{response.Sub4Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub5}} <br>
+	   Total Present / Total Classes: {{response.Sub5Present}}/{{response.Sub5Total}}</p>
+	   
+	   
+	   <p>Subject: {{response.sub6}} <br>
+	   Total Present / Total Classes: {{response.Sub6Present}}/{{response.Sub6Total}}</p>
+	   
+
+	
+</div>
+
+<br>
+<div id=line></div>
+
+<div class="footer" id=footer>
+	<div class="container">
+		<div class="container-fluid">
+			
+				
+		</div>
+	</div>
+</div>

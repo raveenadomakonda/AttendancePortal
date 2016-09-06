@@ -122,6 +122,7 @@ webControllers.controller('enterAttendanceCtrl', [ '$scope', '$http', '$location
 	$scope.id = $location.path().split("/")[2];
 	$scope.errorFlag = false;
 	$scope.successFlag = false;
+	$scope.studentList = "";
     $scope.enterAttendance = function(){
         $scope.errorFlag = false;
         $http.get('/AttendancePortal/rest/enterAttendanceDo', {params:{courseId:$scope.courseId, date:$scope.date, studentList:$scope.studentList}}).success(function(data) {
@@ -140,7 +141,7 @@ webControllers.controller('enterAttendanceCtrl', [ '$scope', '$http', '$location
             });
     	$scope.courseId = null;
     	$scope.date = null;
-    	$scope.studentList = null;
+    	$scope.studentList = "";
     }
 }]);
 
@@ -206,11 +207,29 @@ webControllers.controller('loginCtrl', [ '$scope', '$http', '$location', functio
 }]);
 
 webControllers.controller('studentCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
-	
+	$scope.id = $location.path().split("/")[2];
 }]);
 
 webControllers.controller('studentAttendanceViewCtrl', [ '$scope', '$http', '$location', function($scope, $http, $location) {
-	
+	$scope.val = $scope.param;
+	$scope.id = $location.path().split("/")[2];
+	$scope.successFlag = false;
+        $scope.errorFlag = false;
+        $http.get('/AttendancePortal/rest/studentAttendanceViewDo', {params:{id:$scope.id}}).success(function(data) {
+            console.log("Got data from server")
+            $scope.response = data;
+            if(data == false) {
+            	$scope.errorFlag = true;
+            	$scope.successFlag = false;
+            } else {
+            	$scope.successFlag = true;
+            }
+          }).error(function(){
+              console.log("No reply from server");
+              $scope.errorFlag = true;
+              $scope.successFlag = false;
+            });
+    	$scope.id = null;
 }]);
 
 webControllers.controller('aboutUsCtrl', [ '$scope', '$http', function($scope, $http) {
